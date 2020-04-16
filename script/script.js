@@ -41,7 +41,7 @@ $(document).ready(function() {
         //     "method": "GET",
         //     "headers": {
         //         "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-        //         "x-rapidapi-key": "a963962d09msh96d6d2523156568p175d84jsnce75afe815c7"
+        //         "x-rapidapi-key": ""
         //     }
         // }
 
@@ -53,7 +53,7 @@ $(document).ready(function() {
         //     "method": "GET",
         //     "headers": {
         //         "x-rapidapi-host": "webknox-recipes.p.rapidapi.com",
-        //         "x-rapidapi-key": "0caf29c390msh64b2b05a8ab0709p107325jsnb453524f10ef"
+        //         "x-rapidapi-key": ""
         //     }
         // }
 
@@ -101,8 +101,8 @@ $(document).ready(function() {
                 } 
 
                 allRecipeDetail.push({id: recipeDetailResponse.id, image: recipeDetailResponse.image, title: recipeDetailResponse.title,
-                                     sourceUrl: recipeDetailResponse.sourceUrl, instructions: recipeDetailResponse.instructions,
-                                     ingredients: ingredientDetails});
+                                     sourceUrl: recipeDetailResponse.sourceUrl, servings: recipeDetailResponse.servings, 
+                                     instructions: recipeDetailResponse.instructions, ingredients: ingredientDetails});
             });            
             
         }
