@@ -5,7 +5,7 @@ $(document).ready(function() {
     var spoonacularAPIKey = ""; //while developing, put your APIKey to spoonacular here
                                 //https://rapidapi.com/spoonacular/api/recipe-food-nutrition
     
-    //getRecipes();
+    getRecipes();
 
     function getRecipes() {
         var allRecipeIDs = [];
@@ -90,6 +90,7 @@ $(document).ready(function() {
             $.ajax(recipeDetailSettings).then(function (recipeDetailResponse) {                
                 //console.log(recipeDetailResponse);                
                 var ingredientDetails = [];
+                var ingredientString = "";
                 //loop through all of the extended ingredients and get some info to build
                 for (j = 0; j < recipeDetailResponse.extendedIngredients.length; j++) {
 
@@ -98,21 +99,59 @@ $(document).ready(function() {
                                             ingredientUnit: recipeDetailResponse.extendedIngredients[j].unit,
                                             ingredientInstruction: recipeDetailResponse.extendedIngredients[j].originalString,                            
                     });
+
+                    ingredientString += recipeDetailResponse.extendedIngredients[j].originalString + " ";
                 } 
 
-                allRecipeDetail.push({id: recipeDetailResponse.id, image: recipeDetailResponse.image, title: recipeDetailResponse.title,
-                                     sourceUrl: recipeDetailResponse.sourceUrl, servings: recipeDetailResponse.servings, 
-                                     instructions: recipeDetailResponse.instructions, ingredients: ingredientDetails});
+                var settings = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": "https://trackapi.nutritionix.com/v2/natural/nutrients",
+                    "method": "POST",
+                    "headers": {
+                                "content-type": "application/json",
+                                "accept": "application/json",
+                                "x-app-id": "e4253e49",
+                                "x-app-key": "d7a3983ea636dff493d732d84db3f27e",
+                                "x-remote-user-id": "0",
+                                },
+                    //"data": "{\n \"query\": \"1 potato\",\n \"num_servings\": 1,\n \"aggregate\": \"string\",\n \"line_delimited\": false,\n \"use_raw_foods\": false,\n \"include_subrecipe\": false,\n \"timezone\": \"US/Eastern\",\n \"consumed_at\": null,\n \"lat\": null,\n \"lng\": null,\n \"meal_type\": 0,\n \"use_branded_foods\": false,\n \"locale\": \"en_US\"\n }"
+                    //"data": "{\n \"query\": \"1 potato and 1gs bittersweet chocolate\",\n \"aggregate\": \"foods\" \n}"            
+                    //"data": "{\n \"query\": \"" + ingredientString + "\",\n \"aggregate\": \"foods\" \n}"            
+                    "data": "{\n \"query\": \"" + ingredientString + "\",\n \"aggregate\": \"foods\", \n \"num_servings\": \"" + recipeDetailResponse.servings + "\" \n }"            
+                    }
+                    
+                    $.ajax(settings).done(function (response) {
+                        var nutritionalDetails = [];
+                        console.log(response);
+                        nutritionalDetails.push({calories: response.foods[0].nf_calories,
+                                                    cholesterol: response.foods[0].nf_cholesterol,
+                                                    fiber: response.foods[0].nf_dietary_fiber,
+                                                    potassium: response.foods[0].nf_potassium,                                                    
+                                                    protein: response.foods[0].nf_protein, 
+                                                    saturatedfat: response.foods[0].nf_saturated_fat,                                                                                                                                                           
+                                                    sodium: response.foods[0].nf_sodium,                                                    
+                                                    sugars: response.foods[0].nf_sugars,                                                    
+                                                    carbohydrates: response.foods[0].nf_total_carbohydrate,                                                    
+                                                    totalfat: response.foods[0].nf_total_fat
+                        });
+                        //console.log("servings " + recipeDetailResponse.servings);
+                        //console.log(response.foods[0].nf_calories);
+
+                        allRecipeDetail.push({id: recipeDetailResponse.id, image: recipeDetailResponse.image, title: recipeDetailResponse.title,
+                            sourceUrl: recipeDetailResponse.sourceUrl, servings: recipeDetailResponse.servings, 
+                            instructions: recipeDetailResponse.instructions, ingredients: ingredientDetails,
+                            nutrition: nutritionalDetails });
+                    });
+
+
+                
             });            
             
         }
         console.log(allRecipeDetail);
+        
     }
-
-
-
-
-
 
     // typeahead
     //https://github.com/twitter/typeahead.js
