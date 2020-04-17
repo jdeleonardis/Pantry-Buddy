@@ -93,7 +93,7 @@ $(document).ready(function() {
                 //loop through all of the extended ingredients and get some info to build
                 for (j = 0; j < recipeDetailResponse.extendedIngredients.length; j++) {
 
-                    ingredientDetails.push({ingredentName: recipeDetailResponse.extendedIngredients[j].name,
+                    ingredientDetails.push({ingredientName: recipeDetailResponse.extendedIngredients[j].name,
                                             ingredientAmount: recipeDetailResponse.extendedIngredients[j].amount,
                                             ingredientUnit: recipeDetailResponse.extendedIngredients[j].unit,
                                             ingredientInstruction: recipeDetailResponse.extendedIngredients[j].originalString,                            
