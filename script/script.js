@@ -71,6 +71,7 @@ $(document).ready(function() {
 
     function getRecipeDetail(allRecipeIDs) {
         var sourceUrl = "";
+        var recipeCounter = 0;
         
         for (i = 0; i < allRecipeIDs.length; i++) {
 
@@ -123,7 +124,7 @@ $(document).ready(function() {
                     
                     $.ajax(settings).done(function (response) {
                         var nutritionalDetails = [];
-                        console.log(response);
+                        //console.log(response);
                         nutritionalDetails.push({calories: response.foods[0].nf_calories,
                                                     cholesterol: response.foods[0].nf_cholesterol,
                                                     fiber: response.foods[0].nf_dietary_fiber,
@@ -142,14 +143,24 @@ $(document).ready(function() {
                             sourceUrl: recipeDetailResponse.sourceUrl, servings: recipeDetailResponse.servings, 
                             instructions: recipeDetailResponse.instructions, ingredients: ingredientDetails,
                             nutrition: nutritionalDetails });
+                            
+                        //using recipeCOunter var, populate html here...
+                        console.log(allRecipeDetail[recipeCounter].id);
+                        //console.log(recipeCounter);
+                        recipeCounter++;
+                        
+                        //window.localStorage.setItem('allrecipedetail1', JSON.stringify(allRecipeDetail));
                     });
 
 
                 
             });            
-            
+           
+            // console.log(allRecipeDetail);
+            // console.log(allRecipeDetail[i].id);
         }
-        console.log(allRecipeDetail);
+        // console.log(allRecipeDetail);
+        //window.localStorage.setItem('allrecipedetail2', JSON.stringify(allRecipeDetail));        
         
     }
 
