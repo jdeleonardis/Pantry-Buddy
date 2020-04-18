@@ -64,3 +64,111 @@
 .tt-suggestion p {
     margin: 0;
 }
+
+/* color palette:
+    rgb(154, 248, 154)
+    rgb(72, 44, 44) 
+*/
+
+heading {
+    display: block;
+    background-color: rgb(154, 248, 154);
+    color: rgb(72, 44, 44);
+    text-align: left;
+    font-size: xx-large;
+    font-weight: bold;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-bottom: solid 1px rgb(72, 44, 44);
+}
+
+aside {
+    font-weight: bold;
+}
+
+/* Style the search field */
+.search input[type=text] {
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-size: 17px;
+    border: 1px solid rgb(72, 44, 44);
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+}
+  
+/* Style the submit button */
+.search button {
+    float: left;
+    width: 20%;
+    height: 47.34px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    background: rgb(154, 248, 154);
+    color: rgb(72, 44, 44);
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+}
+.search button:hover {
+    background: rgb(72, 44, 44);
+    color: white;
+}
+
+.search p{
+    color: rgb(72, 44, 44);
+}
+
+ul {
+    color: rgb(72, 44, 44);
+    text-decoration: underline;
+}
+li {
+    text-decoration: none;
+}
+
+
+aside, main {
+    position: relative;
+    display: inline-table;
+    margin: 25px;
+    padding: 20px;
+}
+
+#nutrition {
+    background-color: rgb(154, 248, 154);
+    color: rgb(72, 44, 44);
+    padding: 20px;
+    margin-bottom: 20px;
+    border: solid 1px rgb(72, 44, 44);
+}
+
+#nutritionalValues {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#fiveRecipesHeading {
+    font-weight: bold;
+    text-decoration: underline;
+    color: rgb(72, 44, 44);
+}
+#fiveRecipes div {
+    display: inline-block;
+    margin: 10px;
+    margin-left: 0px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: rgb(154, 248, 154);
+    color: rgb(72, 44, 44);
+    font-weight: bold;
+    border: solid 1px rgb(72, 44, 44)
+}
+
+@media screen and (min-width: 1408px){
+.container {
+    max-width: 100%;
+}
+}
