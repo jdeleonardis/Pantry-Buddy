@@ -282,6 +282,7 @@ $(document).ready(function() {
         }
     });
 
+    //clicking on the search button adds an item to the list
     $("#searchBtn").on("click", function() {
         event.preventDefault();
         addNewListItem();
@@ -302,6 +303,17 @@ $(document).ready(function() {
     function removeIngredientFromTheList() {
             this.parentElement.style.display = 'none';
     }    
+
+    //clicking on one of the 5 recipe divs puts data in the main div from the main object
+    $(".recipediv").on("click", function(e) {
+        var id = $(this).attr('id').slice(-1);
+        $("#recipeName").text(allRecipeDetail[id].title);
+        $("#recipeImage").attr("src",allRecipeDetail[id].image);
+        $("#recipeCalories").text(allRecipeDetail[id].nutrition[0].calories); 
+        $("#recipeCarbs").text(allRecipeDetail[id].nutrition[0].carbohydrates + "g");   
+        $("#recipeFat").text(allRecipeDetail[id].nutrition[0].totalfat + "g");  
+        $("#recipeProtein").text(allRecipeDetail[id].nutrition[0].protein + "g");  
+    });    
 
 
     //end doc ready    
