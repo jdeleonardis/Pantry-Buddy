@@ -23,7 +23,7 @@ Requirements
 APIs
 This project required the use of 2 server-side APIs. For this project, we utilized the following APIs to satisfy this requirement:
 - Spoonacular - use for getting a recipe for ingredients
-- Edemame - use for getting nutritional values
+- Nutritionix - use for getting nutritional values
 
 CSS Framework
 This project required the use of a CSS framework other than BootStrap. For this project, we utilized the following framework to satisfy this requirement:
