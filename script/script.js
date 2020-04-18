@@ -162,6 +162,16 @@ $(document).ready(function() {
                     $(recipeImage).attr("src",allRecipeDetail[recipeCounter].image);
                     $(recipeCalories).text(allRecipeDetail[recipeCounter].nutrition[0].calories); 
 
+                    //populates main panel with first recipe
+                    ////////////// if (recipeCounter = 0) { - issues with the counter
+                    $("#recipeName").text(allRecipeDetail[0].title);
+                    $("#recipeImage").attr("src",allRecipeDetail[0].image);
+                    $("#recipeCalories").text(allRecipeDetail[0].nutrition[0].calories); 
+                    $("#recipeCarbs").text(allRecipeDetail[0].nutrition[0].carbohydrates + "g");   
+                    $("#recipeFat").text(allRecipeDetail[0].nutrition[0].totalfat + "g");  
+                    $("#recipeProtein").text(allRecipeDetail[0].nutrition[0].protein + "g");                                                                          
+                    ////////////// }                    
+
                     recipeCounter++;    
                 });
 
