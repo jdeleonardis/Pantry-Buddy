@@ -2,20 +2,21 @@ $(document).ready(function() {
 
 
     var allRecipeDetail = [];
+    var recipeCounter = 0;
     var spoonacularAPIKey = "4169f5f39fmsh5d69e97fb32ed70p108e0fjsneb5cfde175fb"; //while developing, put your APIKey to spoonacular here
     //https://rapidapi.com/spoonacular/api/recipe-food-nutrition
 
-    getRecipes();
 
     function getRecipes() {
         var allRecipeIDs = [];
         var ingredientList = "";
         //var numberOfRecipesReturned = 5; --hard coded to be 5
 
-        //get list of ingredients
-        $('#ulList li').each(function(i) {
-            ingredientList += $(this).text() + ","
+        //get list of ingredients.  Slice off the last 'x' (used on the list), and add a comma
+        $('#ingredientUL li').each(function (i) {
+            ingredientList += $(this).text().slice(0, -1)  + ","               
         });
+
         //slice off the last digit - last 1 will always be ","
         ingredientList = ingredientList.slice(0, -1);
 
@@ -152,11 +153,16 @@ $(document).ready(function() {
                         nutrition: nutritionalDetails
                     });
 
-                    //using recipeCOunter var, populate html here...
-                    console.log(allRecipeDetail);
-                    //console.log(recipeCounter);
+                    //using recipeCounter var, populate 5 recipe panels
+                    recipeName = "#recipe" + recipeCounter + "name";
+                    recipeImage = "#recipe" + recipeCounter + "image";                        
+                    recipeCalories = "#recipe" + recipeCounter + "calories";   
+
+                    $(recipeName).text(allRecipeDetail[recipeCounter].title);
+                    $(recipeImage).attr("src",allRecipeDetail[recipeCounter].image);
+                    $(recipeCalories).text(allRecipeDetail[recipeCounter].nutrition[0].calories); 
+
                     recipeCounter++;    
-                    //window.localStorage.setItem('allrecipedetail1', JSON.stringify(allRecipeDetail));
                 });
 
 
@@ -194,20 +200,6 @@ $(document).ready(function() {
             cb(matches);
         };
     };
-
-    //possible enter code - need a form?
-    $('.typeahead').on('keydown', function(e) {
-        if (e.keyCode == 13) {
-            console.log($(this).val().trim());
-            $('.typeahead').typeahead('val', "");
-            //   var ta = $(this).data('typeahead');
-            //   var val = ta.$menu.find('.active').data('value');
-            //   console.log(ta);
-            //   console.log(val);          
-            //   if (!val)
-            //     $('#your-form').submit();
-        }
-    });
 
     var meats = ['Beef', 'Chicken', 'Pork', 'Sausage', 'Fish', 'Tuna',
         'Hamburger', 'Lamb', 'Turkey', 'Veal', 'Bacon', 'Duck',
@@ -272,6 +264,34 @@ $(document).ready(function() {
         name: 'other',
         source: substringMatcher(other)
     });
+
+    //when in typeahead input, keydown processes
+    $('.typeahead').on('keydown', function(e) {
+        if (e.keyCode == 13) {            
+            $("#searchBtn").click();
+        }
+    });
+
+    $("#searchBtn").on("click", function() {
+        event.preventDefault();
+        addNewListItem();
+    });
+
+    function addNewListItem () {        
+        var enteredValue = $("#ingredientsInput").val().trim();        
+        var newLi = $("<li>").text(enteredValue);
+        var newSpan = $("<span>").text("x");
+        newSpan.attr("class", "removeIngredient");
+        newLi.append(newSpan);
+        $("#ingredientUL").append(newLi);
+        $('.typeahead').typeahead('val', "");
+    }
+
+    $(document).on("click", ".removeIngredient",removeIngredientFromTheList);
+
+    function removeIngredientFromTheList() {
+            this.parentElement.style.display = 'none';
+    }    
 
 
     //end doc ready    
