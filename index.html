@@ -1,45 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <!-- bootstrap -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
-  
-  <!-- font awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-  
-  <!-- google fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"/>  
-  
-  <!-- site specific stylesheet -->
-  <link rel="stylesheet" href="css/style.css"/>
+  <head>
+    <meta charset="utf-8">
+    <title>Pantry Buddy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"/>
+    <link rel="stylesheet" href="./stylesheet.css" />
+  </head>
 
-  <title>PantryBuddy</title>
+  <body>
+      <heading>
+          <span>&#9753</span>Pantry Buddy
+      </heading>
 
-</head>
+    <div class="container">
+      <div class="columns">
+        <aside class="column is-one-third">
+            <div class="search">
+              <p>Add an ingredient:</p>
+              <input class="typeahead" id="ingredientsInput" type="text" placeholder="Ingredient" name="search">
+              <button type="submit"><i class="fa fa-search" id="searchBtn"></i></button>
+            </div>
+            <div id="ingredientList">
+              <ul id="ingredientUL"> Ingredients:
+                <li>list of ingredients with remove button</li>
+              </ul>
+            </div>
+        </aside>
 
-<body>
-  <ul id="ulList">
-    <li>vanilla</li>
-    <li>chocolate</li>
-    <li>eggs</li>    
-  </ul>
+        <main class="column">
 
-  <div id="the-basics">
-    <input class="typeahead" type="text" placeholder="Ingredients">
+          <section id="fiveRecipes">
+            <span id="fiveRecipesHeading"><p>Recipes: </p></span>
+            <!-- Recipe Card 1 -->
+            <div class="column" id="recipe0">
+              <p id="recipe0name">Chicken & Biscuits</p>
+              <img id="recipe0image"/>Image
+              <p id="recipe0calories">Calories: 500</p>
+            </div>
+            <!-- Recipe Card 2 -->
+            <div class="column" id="recipe1">
+              <p id="recipe1name">Chicken & Broccoli</p>
+              <img id="recipe1image"/>Image
+              <p id="recipe1calories">Calories: 500</p>
+            </div>
+            <!-- Recipe Card 3 -->
+            <div column="colum" id="recipe2">
+              <p id="recipe2name">Chicken Spaghetti</p>
+              <img id="recipe2image"/>Image
+              <p id="recipe2calories">Calories: 500</p>
+            </div>
+            <!-- Recipe Card 4 -->
+            <div class="column" id="recipe3">
+              <p id="recipe3name">Chicken Noodle Casserole</p>
+              <img id="recipe3image"/>Image
+              <p id="recipe3calories">Calories: 500</p>
+            </div>
+            <!-- Recipe Card 5 -->
+            <div class="column" id="recipe4">
+              <p id="recipe4name">Chicken Salad</p>
+              <img id="recipe4image"/>Image
+              <p id="recipe4calories">Calories: 500</p>
+            </div>
+        </section>
+
+          <section id="nutrition">
+            <p id="nutritionalValues">Nutritional Values: </p>
+            <p id="recipeName">Chicken & Biscuits</p>
+            <img id="recipeImage"/>Image
+            <p>Calories: 500<span id="recipeCalories"></span></p>
+            <p>Carbs: <span id="recipeCarbs"></span></p>
+            <p>Fat: <span id="recipeFat"></span></p>
+            <p>Protein: <span id="recipeProtein"></span></p>
+          </section>
+        
+
+        
+      </main>
+    </div>
   </div>
 
+      <script src="https://code.jquery.com/jquery.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+      <script src="./script.js"></script>
+  </body>
+
+  <footer>
+
+  </footer>
+
   
-  <!-- jquery -->
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <!-- site specific js -->
-  <!-- <script src="script/bloodhound.js"></script> -->
-  <script src="script/typeahead.jquery.js"></script>
-  <script src="script/script.js"></script>
-
-</body>
-
-</html>
