@@ -13,7 +13,7 @@
   </head>
 
   <body>
-      <heading>
+      <heading id="pageHeading">
           <span>&#9753</span>Pantry Buddy
       </heading>
 
@@ -21,65 +21,71 @@
       <div class="columns">
         <aside class="column is-one-third">
             <div class="search">
-              <p>Add an ingredient:</p>
+              <heading class="sectionHeadings">What's in your pantry?</heading>
               <input class="typeahead" id="ingredientsInput" type="text" placeholder="Ingredient" name="search">
-              <button type="submit"><i class="fa fa-search" id="searchBtn"></i></button>
+            </div>
+            <div>
+              <button type="button" id="addToList">Add Ingredient</button>
             </div>
             <div id="ingredientList">
-              <ul id="ingredientUL"> Ingredients:
-                <li>list of ingredients with remove button</li>
+              <heading class="sectionHeadings"> Ingredients:
+              </heading>
+              <ul id="ingredientUL"> 
+                <!-- List of ingredient w/ remove btns -->
               </ul>
+            </div>
+            <div>
+              <button type="submit" id="searchBtn">Get Recipes <i class="fa fa-search"></i></button>
+              <button type="button">Clear List</button>
             </div>
         </aside>
 
         <main class="column">
-
           <section id="fiveRecipes">
-            <span id="fiveRecipesHeading"><p>Recipes: </p></span>
+            <heading class="sectionHeadings" id="fiveRecipesHeading"><p>Recipes: </p></heading>
             <!-- Recipe Card 1 -->
-            <div class="column recipediv" id="recipe0">
+            <div class="column sectionContent recipediv" id="recipe0">
               <p id="recipe0name">Chicken & Biscuits</p>
               <img id="recipe0image"/>Image
               <p id="recipe0calories">Calories: 500</p>
             </div>
             <!-- Recipe Card 2 -->
-            <div class="column recipediv" id="recipe1">
+            <div class="column sectionContent recipediv" id="recipe1">
               <p id="recipe1name">Chicken & Broccoli</p>
               <img id="recipe1image"/>Image
               <p id="recipe1calories">Calories: 500</p>
             </div>
             <!-- Recipe Card 3 -->
-            <div class="column recipediv" id="recipe2">
+            <div class="column sectionContent recipediv" id="recipe2">
               <p id="recipe2name">Chicken Spaghetti</p>
               <img id="recipe2image"/>Image
               <p id="recipe2calories">Calories: 500</p>
             </div>
             <!-- Recipe Card 4 -->
-            <div class="column recipediv" id="recipe3">
+            <div class="column sectionContent recipediv" id="recipe3">
               <p id="recipe3name">Chicken Noodle Casserole</p>
               <img id="recipe3image"/>Image
               <p id="recipe3calories">Calories: 500</p>
             </div>
             <!-- Recipe Card 5 -->
-            <div class="column recipediv" id="recipe4">
+            <div class="column sectionContent recipediv" id="recipe4">
               <p id="recipe4name">Chicken Salad</p>
               <img id="recipe4image"/>Image
               <p id="recipe4calories">Calories: 500</p>
             </div>
         </section>
 
-          <section id="nutrition">
-            <p id="nutritionalValues">Nutritional Values: </p>
-            <p id="recipeName">Chicken & Biscuits</p>
-            <img id="recipeImage"/>Image
-            <p>Calories: <span id="recipeCalories"></span></p>
-            <p>Carbs: <span id="recipeCarbs"></span></p>
-            <p>Fat: <span id="recipeFat"></span></p>
-            <p>Protein: <span id="recipeProtein"></span></p>
+          <section>
+            <heading class="sectionHeadings" id="nutritionHeading">Nutritional Values:</heading>
+            <div class="sectionContent" id="nutrition">
+              <p id="recipeName">Chicken & Biscuits</p>
+              <img id="recipeImage"/>Image
+              <p>Calories: <span id="recipeCalories"></span></p>
+              <p>Carbs: <span id="recipeCarbs"></span></p>
+              <p>Fat: <span id="recipeFat"></span></p>
+              <p>Protein: <span id="recipeProtein"></span></p>
+            </div>
           </section>
-        
-
-        
       </main>
     </div>
   </div>
@@ -92,7 +98,7 @@
   </body>
 
   <footer>
-
+    &copy A Group 7 Original <span>&#9884</span>
   </footer>
 
   
