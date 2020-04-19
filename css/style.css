@@ -95,6 +95,12 @@
     border: 1px solid rgb(72, 44, 44);
     background: #f1f1f1;
 }
+
+.search input[type=text]:focus {
+    border: 1px solid rgb(154, 248, 154);
+    color: rgb(72, 44, 44);
+    box-shadow: 0 1px 3px 0 rgba(56,56,56,.3);
+}
   
 /* Style all buttons */
 button {
@@ -128,6 +134,7 @@ aside, main {
     margin-top: 10px;
     margin-bottom: 20px;
     border: solid 1px rgb(72, 44, 44);
+    box-shadow: 15px 15px 5px -5px hsla(0,0%,60.8%,.45);
 }
 
 #fiveRecipes div {
