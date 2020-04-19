@@ -8,6 +8,7 @@ $(document).ready(function() {
 
 
     function getRecipes() {
+        allRecipeDetail = [];
         var allRecipeIDs = [];
         var ingredientList = "";
         //var numberOfRecipesReturned = 5; --hard coded to be 5
