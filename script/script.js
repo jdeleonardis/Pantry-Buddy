@@ -290,16 +290,31 @@ $(document).ready(function() {
         addNewListItem();
     });
 
-    function addNewListItem () {        
-        var enteredValue = $("#ingredientsInput").val().trim();        
-        var newLi = $("<li>").text(enteredValue);
-        var newSpan = $("<span>").text("x");
-        newSpan.attr("class", "removeIngredient");
-        newLi.append(newSpan);
-        $("#ingredientUL").append(newLi);
-        $('.typeahead').typeahead('val', "");
+     function addNewListItem () {        
+        var enteredValue = $("#ingredientsInput").val().trim();  
+        if (enteredValue == "") {
+            $(".modal").addClass("is-active");
+        }
+        else {
+            var newLi = $("<li>").text(enteredValue);
+            var newSpan = $("<span>").text("x");
+            newSpan.attr("class", "removeIngredient");
+            newLi.append(newSpan);
+            $("#ingredientUL").append(newLi);
+            $('.typeahead').typeahead('val', "");
+        }
     }
 
+    //close the modal using the x button
+    $(".modal-close").click(function() {
+        $(".modal").removeClass("is-active");
+     });  
+    //or, if they click outside the modal in the darker background
+    $(document).on("click",".modal-background", function(e){
+        $(".modal").removeClass("is-active");
+    });
+
+    //clicking on the x of the ingregredient removes it from the list.
     $(document).on("click", ".removeIngredient",removeIngredientFromTheList);
 
     function removeIngredientFromTheList() {
