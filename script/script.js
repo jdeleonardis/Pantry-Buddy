@@ -170,6 +170,7 @@ $(document).ready(function() {
                     $("#recipeCarbs").text(allRecipeDetail[0].nutrition[0].carbohydrates + "g");   
                     $("#recipeFat").text(allRecipeDetail[0].nutrition[0].totalfat + "g");  
                     $("#recipeProtein").text(allRecipeDetail[0].nutrition[0].protein + "g");                                                                          
+                    $("#recipeLink").attr("href",allRecipeDetail[0].sourceUrl); 
                     ////////////// }                    
 
                     recipeCounter++;    
@@ -313,7 +314,19 @@ $(document).ready(function() {
         $("#recipeCarbs").text(allRecipeDetail[id].nutrition[0].carbohydrates + "g");   
         $("#recipeFat").text(allRecipeDetail[id].nutrition[0].totalfat + "g");  
         $("#recipeProtein").text(allRecipeDetail[id].nutrition[0].protein + "g");  
-    });    
+        $("#recipeLink").attr("href",allRecipeDetail[id].sourceUrl);          
+    });  
+
+    //clicking on the search button runs the code
+    $("#searchBtn").on("click", function() {
+        event.preventDefault();
+        getRecipes();
+    });
+
+    //clicking on the clear button removes all items in the list
+    $("#clearBtn").on("click", function() {
+        $('#ingredientUL').empty()
+    });
 
 
     //end doc ready    
