@@ -278,12 +278,12 @@ $(document).ready(function() {
     //when in typeahead input, keydown processes
     $('.typeahead').on('keydown', function(e) {
         if (e.keyCode == 13) {            
-            $("#searchBtn").click();
+            $("#addToList").click();
         }
     });
 
     //clicking on the search button adds an item to the list
-    $("#searchBtn").on("click", function() {
+    $("#addToList").on("click", function() {
         event.preventDefault();
         addNewListItem();
     });
