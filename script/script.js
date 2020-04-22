@@ -14,8 +14,8 @@ $(document).ready(function() {
         //var numberOfRecipesReturned = 5; --hard coded to be 5
 
         //get list of ingredients.  Slice off the last 'x' (used on the list), and add a comma
-        $('#ingredientUL li').each(function (i) {
-            ingredientList += $(this).text().slice(0, -1)  + ","               
+        $('#ingredientUL li').each(function(i) {
+            ingredientList += $(this).text().slice(0, -1) + ","
         });
 
         //slice off the last digit - last 1 will always be ","
@@ -156,22 +156,22 @@ $(document).ready(function() {
 
                     //using recipeCounter var, populate 5 recipe panels
                     recipeName = "#recipe" + recipeCounter + "name";
-                    recipeImage = "#recipe" + recipeCounter + "image";                        
-                    recipeCalories = "#recipe" + recipeCounter + "calories";   
+                    recipeImage = "#recipe" + recipeCounter + "image";
+                    recipeCalories = "#recipe" + recipeCounter + "calories";
 
                     $(recipeName).text(allRecipeDetail[recipeCounter].title);
-                    $(recipeImage).attr("src",allRecipeDetail[recipeCounter].image);
-                    $(recipeCalories).text(allRecipeDetail[recipeCounter].nutrition[0].calories); 
+                    $(recipeImage).attr("src", allRecipeDetail[recipeCounter].image);
+                    $(recipeCalories).text(allRecipeDetail[recipeCounter].nutrition[0].calories);
 
                     //populates main panel with first recipe
                     ////////////// if (recipeCounter = 0) { - issues with the counter
                     $("#recipeName").text(allRecipeDetail[0].title);
-                    $("#recipeImage").attr("src",allRecipeDetail[0].image);
-                    $("#recipeCalories").text(allRecipeDetail[0].nutrition[0].calories); 
-                    $("#recipeCarbs").text(allRecipeDetail[0].nutrition[0].carbohydrates + "g");   
-                    $("#recipeFat").text(allRecipeDetail[0].nutrition[0].totalfat + "g");  
-                    $("#recipeProtein").text(allRecipeDetail[0].nutrition[0].protein + "g");                                                                          
-                    $("#recipeLink").attr("href",allRecipeDetail[0].sourceUrl); 
+                    $("#recipeImage").attr("src", allRecipeDetail[0].image);
+                    $("#recipeCalories").text(allRecipeDetail[0].nutrition[0].calories);
+                    $("#recipeCarbs").text(allRecipeDetail[0].nutrition[0].carbohydrates + "g");
+                    $("#recipeFat").text(allRecipeDetail[0].nutrition[0].totalfat + "g");
+                    $("#recipeProtein").text(allRecipeDetail[0].nutrition[0].protein + "g");
+                    $("#recipeLink").attr("href", allRecipeDetail[0].sourceUrl);
                     ////////////// }                    
 
                     recipeCounter++;    
@@ -279,26 +279,26 @@ $(document).ready(function() {
 
     //when in typeahead input, keydown processes
     $('.typeahead').on('keydown', function(e) {
-        if (e.keyCode == 13) {            
+        if (e.keyCode == 13) {
             $("#addToList").click();
         }
     });
 
     //clicking on the search button adds an item to the list
-    $("#addToList").on("click", function() {
-        event.preventDefault();
-        addNewListItem();
-    });
+        
+    $("#addToList").on("click",  function()  {
+        event.preventDefault();    
+        addNewListItem();    
+    });
 
-     function addNewListItem () {        
-        var enteredValue = $("#ingredientsInput").val().trim();  
+    function addNewListItem() {
+        var enteredValue = $("#ingredientsInput").val().trim();
         if (enteredValue == "") {
             $(".modal").addClass("is-active");
-        }
-        else {
+        } else {
             var newLi = $("<li>").text(enteredValue);
             var newSpan = $("<span>").text("x");
-            newSpan.attr("class", "removeIngredient");
+            newSpan.attr("class",  "removeIngredient");
             newLi.append(newSpan);
             $("#ingredientUL").append(newLi);
             $('.typeahead').typeahead('val', "");
@@ -308,41 +308,38 @@ $(document).ready(function() {
     //close the modal using the x button
     $(".modal-close").click(function() {
         $(".modal").removeClass("is-active");
-     });  
+    });
     //or, if they click outside the modal in the darker background
-    $(document).on("click",".modal-background", function(e){
-        $(".modal").removeClass("is-active");
-    });
+      
+    $(document).on("click", ".modal-background",  function(e) {
+        $(".modal").removeClass("is-active");  
+    });
 
     //clicking on the x of the ingregredient removes it from the list.
-    $(document).on("click", ".removeIngredient",removeIngredientFromTheList);
+    $(document).on("click",  ".removeIngredient", removeIngredientFromTheList);
 
     function removeIngredientFromTheList() {
-            this.parentElement.style.display = 'none';
-    }    
+        this.parentElement.style.display = 'none';
+    }
 
     //clicking on one of the 5 recipe divs puts data in the main div from the main object
-    $(".recipediv").on("click", function(e) {
+    $(".recipediv").on("click",  function(e)  {
         var id = $(this).attr('id').slice(-1);
         $("#recipeName").text(allRecipeDetail[id].title);
-        $("#recipeImage").attr("src",allRecipeDetail[id].image);
-        $("#recipeCalories").text(allRecipeDetail[id].nutrition[0].calories); 
-        $("#recipeCarbs").text(allRecipeDetail[id].nutrition[0].carbohydrates + "g");   
-        $("#recipeFat").text(allRecipeDetail[id].nutrition[0].totalfat + "g");  
-        $("#recipeProtein").text(allRecipeDetail[id].nutrition[0].protein + "g");  
-        $("#recipeLink").attr("href",allRecipeDetail[id].sourceUrl);          
-    });  
+        $("#recipeImage").attr("src", allRecipeDetail[id].image);
+        $("#recipeCalories").text(allRecipeDetail[id].nutrition[0].calories);
+        $("#recipeCarbs").text(allRecipeDetail[id].nutrition[0].carbohydrates + "g");
+        $("#recipeFat").text(allRecipeDetail[id].nutrition[0].totalfat + "g");
+        $("#recipeProtein").text(allRecipeDetail[id].nutrition[0].protein + "g");
+        $("#recipeLink").attr("href", allRecipeDetail[id].sourceUrl);    
+    });
 
-    //clicking on the search button runs the code
-    $("#searchBtn").on("click", function() {
-        event.preventDefault();
-        getRecipes();
-    });
+
 
     //clicking on the clear button removes all items in the list
-    $("#clearBtn").on("click", function() {
-        $('#ingredientUL').empty()
-    });
+    $("#clearBtn").on("click",  function()  {
+        $('#ingredientUL').empty()    
+    });
 
 
     //end doc ready    

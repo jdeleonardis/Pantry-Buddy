@@ -1,5 +1,8 @@
 /* typeahead on jsfiddle*/
+
+
 /* http://jsfiddle.net/vrs95w3g/ */
+
 
 /* .tt-suggestion.tt-cursor {
     color: #fff;
@@ -10,11 +13,14 @@
     margin-left: 200px;
 }
 
+
 /* fixed typeahead 0.11.1 CSS */
+
 .twitter-typeahead .tt-query,
 .twitter-typeahead .tt-hint {
     margin-bottom: 0;
 }
+
 
 /* .tt-hint {
     display: block;
@@ -27,7 +33,6 @@
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 } */
-
 
 .tt-menu {
     min-width: 160px;
@@ -65,6 +70,7 @@
     margin: 0;
 }
 
+
 /* color palette:
     rgb(154, 248, 154)
     rgb(72, 44, 44) 
@@ -82,12 +88,14 @@
     border-bottom: solid 1px rgb(72, 44, 44);
 }
 
-.sectionHeadings{
+.sectionHeadings {
     color: rgb(72, 44, 44);
     font-weight: bold;
 }
 
+
 /* Style the search field */
+
 .search input[type=text] {
     padding: 10px;
     margin-top: 10px;
@@ -99,10 +107,12 @@
 .search input[type=text]:focus {
     border: 1px solid rgb(154, 248, 154);
     color: rgb(72, 44, 44);
-    box-shadow: 0 1px 3px 0 rgba(56,56,56,.3);
+    box-shadow: 0 1px 3px 0 rgba(56, 56, 56, .3);
 }
-  
+
+
 /* Style all buttons */
+
 button {
     height: 47.34px;
     margin-bottom: 20px;
@@ -122,7 +132,8 @@ button:hover {
     color: white;
 }
 
-aside, main {
+aside,
+main {
     margin: 25px;
     padding: 20px;
 }
@@ -134,7 +145,7 @@ aside, main {
     margin-top: 10px;
     margin-bottom: 20px;
     border: solid 1px rgb(72, 44, 44);
-    box-shadow: 15px 15px 5px -5px hsla(0,0%,60.8%,.45);
+    box-shadow: 15px 15px 5px -5px hsla(0, 0%, 60.8%, .45);
 }
 
 #fiveRecipes div {
@@ -146,8 +157,8 @@ aside, main {
 ul {
     list-style-type: none;
     padding: 0;
-  }
-  
+}
+
 ul li {
     border: 1px solid #ddd;
     /* margin-top: -1px; Prevent double borders */
@@ -164,7 +175,7 @@ ul li {
 ul li:hover {
     background-color: #eee;
 }
-  
+
 .removeIngredient {
     cursor: pointer;
     position: absolute;
@@ -173,10 +184,10 @@ ul li:hover {
     padding: 12px 16px;
     transform: translate(0%, -50%);
 }
-  
+
 .removeIngredient:hover {
-    background: #bbb; 
-    color:red;
+    background: #bbb;
+    color: red;
 }
 
 .modal-content {
@@ -192,8 +203,24 @@ footer {
     padding: 10px;
 }
 
-@media screen and (min-width: 1408px){
-.container {
-    max-width: 100%;
+@media screen and (min-width: 1408px) {
+    .container {
+        max-width: 100%;
+    }
 }
+
+#fiveRecipes {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.card {
+    background-color: rgb(154, 248, 154);
+    color: rgb(72, 44, 44);
+    margin-top: 20px;
+    border: solid 1px rgb(72, 44, 44);
+    box-shadow: 15px 15px 5px -5px hsla(0, 0%, 60.8%, .45);
+}
+
+
 }
