@@ -302,6 +302,7 @@ $(document).ready(function() {
             newLi.append(newSpan);
             $("#ingredientUL").append(newLi);
             $('.typeahead').typeahead('val', "");
+            setTimeout(function() {newLi.addClass("fadeOpacity");}, 0);
         }
     }
 
