@@ -2,7 +2,7 @@
 (async() => {
 
     const spoonPath = "https://api.spoonacular.com/recipes/";
-    const spoonKey = "00bd744ed9714e4493620a07b3b29c4d";
+    const spoonKey = "13372430cfbe412c8b8ff476d4568091";
 
     const nixPath = "https://trackapi.nutritionix.com/v2/natural/nutrients";
     const nixID = "e4253e49";
@@ -108,11 +108,19 @@
     }
 
     $("#searchBtn").click(async() => {
-        const recipes = await getRecipes(6, getIngredientsFromPage());
-        const nutrition = await Promise.all(recipes.map(recipe => getNutrtionInfo(recipe)));
-        renderRecipes(recipes);
-        addRecipeCardEventHandlers(recipes, nutrition);
+        if ($("#ingredientUL").children().length == 0) {
+            $(".modal").addClass("is-active");
+        }
+        else { 
+            document.body.style.cursor='wait'; 
+            const recipes = await getRecipes(6, getIngredientsFromPage());
+            const nutrition = await Promise.all(recipes.map(recipe => getNutrtionInfo(recipe)));
+            renderRecipes(recipes);
+            addRecipeCardEventHandlers(recipes, nutrition);
+            document.body.style.cursor='default';
+        }
     });
+
 
     //use local storage to pass around data rather than vars
 })();
