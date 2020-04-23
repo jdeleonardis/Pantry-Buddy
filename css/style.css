@@ -211,6 +211,7 @@ footer {
 
 #fiveRecipes {
     display: flex;
+    /* flex-direction: column; */
     justify-content: space-evenly;
 }
 
@@ -220,7 +221,4 @@ footer {
     margin-top: 20px;
     border: solid 1px rgb(72, 44, 44);
     box-shadow: 15px 15px 5px -5px hsla(0, 0%, 60.8%, .45);
-}
-
-
 }

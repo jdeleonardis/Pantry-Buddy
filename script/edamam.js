@@ -2,13 +2,15 @@
 (async() => {
 
     const spoonPath = "https://api.spoonacular.com/recipes/";
-    const spoonKey = "422896595733422cab793b743632e7d6";
+    const spoonKey = "00bd744ed9714e4493620a07b3b29c4d";
 
     const nixPath = "https://trackapi.nutritionix.com/v2/natural/nutrients";
     const nixID = "e4253e49";
     const nixKey = "d7a3983ea636dff493d732d84db3f27e";
 
-    function getNutrtionInfo(ingredients, servings) {
+    // Queries Nutritionix API and returns object with nutrition data
+    // for given recipe.
+    function getNutrtionInfo(recipe) {
         return $.ajax({
             async: true,
             crossDomain: true,
@@ -22,9 +24,9 @@
                 "x-remote-user-id": "0",
             },
             data: JSON.stringify({
-                "query": ingredients,
+                "query": getIngredientsFromRecipe(recipe),
                 "aggregate": "serving",
-                "num_servings": servings,
+                "num_servings": recipe.servings,
             }),
         });
     }
@@ -63,9 +65,14 @@
         });
     }
 
-    //Returns list of ingredients represented as comma delimited string
-    function getIngredientsString() {
+    // Returns list of ingredients from page as comma delimited string
+    function getIngredientsFromPage() {
         return $.map($("#ingredientUL").children(), (item) => $(item).text().slice(0, -1)).toString();
+    }
+
+    // Returns list of ingredients from given recipe as a comma delimited string
+    function getIngredientsFromRecipe(recipe) {
+        return recipe.extendedIngredients.map(ingredient => ingredient.originalString).toString();
     }
 
     // Returns an array of up to n recipes based on given ingredients
@@ -75,28 +82,37 @@
         return newList;
     }
 
-    // function renderRecipes(recipes) {
-    //     $("#fiveRecipes").empty();
-    //     recipes.forEach(recipe => {
-    //         let card = $("<div>").addClass("column sectionContent recipediv")
-    //             .append($("<p>").text(recipe.title))
-    //             .append($("<img>").attr("src", recipe.image))
-    //             .append($("<p>").text("Calories: " + recipe.nutrition.nutrients[0].amount));
-    //         $("#fiveRecipes").append(card);
-    //     });
 
+    // Renders recipe cards to the page.
     function renderRecipes(recipes) {
         $("#fiveRecipes").empty();
         recipes.forEach(recipe => {
-            let card = $("<div>").addClass("card column is-4");
+            let card = $("<div>").addClass("column card is-5");
             let img = $("<img>").addClass("card-image").attr("src", recipe.image);
             $("#fiveRecipes").append(card.append(img));
         });
     }
 
+    // Addes event handlers to all recipe cards on the page
+    function addRecipeCardEventHandlers(recipes, nutrition) {
+        $.each($("#fiveRecipes").children(), (index, card) => {
+            $(card).click(() => {
+                $("#recipeName").text(recipes[index].title);
+                $("#recipeCalories").text(nutrition[index].foods[0].nf_calories + "kcal");
+                $("#recipeCarbs").text(nutrition[index].foods[0].nf_total_carbohydrate + "g");
+                $("#recipeFat").text(nutrition[index].foods[0].nf_total_fat + "g");
+                $("#recipeProtein").text(nutrition[index].foods[0].nf_protein + "g");
+                $("#recipeLink").attr("href", recipes[index].sourceUrl);
+            });
+        });
+    }
+
     $("#searchBtn").click(async() => {
-        const recipes = await getRecipes(6, getIngredientsString());
+        const recipes = await getRecipes(6, getIngredientsFromPage());
+        const nutrition = await Promise.all(recipes.map(recipe => getNutrtionInfo(recipe)));
         renderRecipes(recipes);
+        addRecipeCardEventHandlers(recipes, nutrition);
     });
 
+    //use local storage to pass around data rather than vars
 })();
