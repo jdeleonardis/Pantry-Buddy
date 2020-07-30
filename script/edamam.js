@@ -98,10 +98,10 @@
         $.each($("#fiveRecipes").children(), (index, card) => {
             $(card).click(() => {
                 $("#recipeName").text(recipes[index].title);
-                $("#recipeCalories").text(nutrition[index].foods[0].nf_calories + "kcal");
-                $("#recipeCarbs").text(nutrition[index].foods[0].nf_total_carbohydrate + "g");
-                $("#recipeFat").text(nutrition[index].foods[0].nf_total_fat + "g");
-                $("#recipeProtein").text(nutrition[index].foods[0].nf_protein + "g");
+                $("#recipeCalories").text(nutrition[index].foods[0].nf_calories + " kcal");
+                $("#recipeCarbs").text(nutrition[index].foods[0].nf_total_carbohydrate + " g");
+                $("#recipeFat").text(nutrition[index].foods[0].nf_total_fat + " g");
+                $("#recipeProtein").text(nutrition[index].foods[0].nf_protein + " g");
                 $("#recipeLink").attr("href", recipes[index].sourceUrl);
             });
         });
@@ -110,14 +110,13 @@
     $("#searchBtn").click(async() => {
         if ($("#ingredientUL").children().length == 0) {
             $(".modal").addClass("is-active");
-        }
-        else { 
-            document.body.style.cursor='wait'; 
+        } else {
+            document.body.style.cursor = 'wait';
             const recipes = await getRecipes(6, getIngredientsFromPage());
             const nutrition = await Promise.all(recipes.map(recipe => getNutrtionInfo(recipe)));
             renderRecipes(recipes);
             addRecipeCardEventHandlers(recipes, nutrition);
-            document.body.style.cursor='default';
+            document.body.style.cursor = 'default';
         }
     });
 
