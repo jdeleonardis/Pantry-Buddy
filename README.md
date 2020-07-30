@@ -1,6 +1,9 @@
-# project_1_pantry_buddy
+# Project Title
+Pantry Buddy
 
-README - Project #1
+https://jdeleonardis.github.io/Pantry-Buddy/
+
+![App Image](https://user-images.githubusercontent.com/58078950/88952215-1be8e880-d265-11ea-8a95-130666c41fdb.png)
 
 Group Members:
 Jay DeLeonardis
