@@ -10,9 +10,6 @@ Jay DeLeonardis
 Julia Hopkins
 Michael Nance
 
-Project Title
-Pantry Buddy
-
 Project Description
 This project accepts input from a user for ingredients that the user has in their pantry. The application, utilizing the below APIs, provides the user with recipes based off their ingredients. In addition, the application provides the user with the nutritional value for each recipe.
 
